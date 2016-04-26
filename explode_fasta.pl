@@ -20,7 +20,7 @@ while (<FILE1>) #reads in line after line
   if (/>(\S+)/) #If fasta header:
   {
     $curseq = $1;
-    print STDERR "Splitting $curseq\n";
+    print STDERR "\tSplitting $curseq\n";
     $name=join('',$ARGV[1],"/$curseq.fa");
     open $fh, ">",$name or die "Cant open $curseq.fa ($!)\n";
 

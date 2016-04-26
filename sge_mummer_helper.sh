@@ -24,7 +24,7 @@ date
 hostname
 
 ## preparing the directory
-echo "Processing task $SGE_TASK_ID $REF $QRY $MY_WORK"
+echo "\tProcessing task $SGE_TASK_ID $REF $QRY $MY_WORK"
 mkdir -p $MY_WORK
 ln -s $REF $MY_WORK/ref.fa
 ln -s $QRY $MY_WORK/qry.fa

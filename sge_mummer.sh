@@ -3,7 +3,7 @@
 
 min_args=3
 #path to the mumer install directory:
-script_path=/seq/schatz/fritz/mummer/
+script_path=/seq/schatz/fritz/sge_mummer2/sge_mummer/
 #path to the mumer install directory:
 mummer_path=/sonas-hs/schatz/hpc/home/fsedlaze/programs/MUMmer3.23/
 
@@ -32,9 +32,13 @@ if [ $# -eq $min_args ]; then
 	#footer:
 	for i in `/bin/ls $work/*/*.delta`
 	do
+		DIR=$(dirname "${i}")
+		if [ ! -f $DIR'/nucmer.success' ]; then
+  			echo "ERROR: One subprocess exit with error!"
+			exit
+		fi
   		awk ' NR > 2 {print $0} ' $i >> $work/'merged_results.delta'
 	done
-
 	#cleaning up the working directory
 	tmp=1
 	for i in $(cat $work/summary)
@@ -45,6 +49,7 @@ if [ $# -eq $min_args ]; then
 	done
 	rm $work/summary
 	rm $work'/mummer.sh'
+	echo "Finished succesfully."
 else
         echo "Splits and aligns the ref.fa to the query.fa"
         echo "File path of the ref file"
