@@ -30,14 +30,14 @@ if [ $# -eq $min_args ]; then
 	echo "$ref $query" > $work/'merged_results.delta'
 	echo "NUCMER" >> $work/'merged_results.delta'
 	#footer:
-	for i in `/bin/ls $work/*/*.delta`
+	for i in `/bin/ls $work/*/nucmer.proc`
 	do
 		DIR=$(dirname "${i}")
 		if [ ! -f $DIR'/nucmer.success' ]; then
   			echo "ERROR: One subprocess exit with error!"
 			exit
 		fi
-  		awk ' NR > 2 {print $0} ' $i >> $work/'merged_results.delta'
+  		awk ' NR > 2 {print $0} ' $DIR/*.delta >> $work/'merged_results.delta'
 	done
 	#cleaning up the working directory
 	tmp=1

@@ -36,7 +36,6 @@ then
   echo "Aligning reads"
   touch nucmer.proc
   $PATHMUM/nucmer -maxmatch -l 100 -c 500 ref.fa qry.fa -p $SGE_TASK_ID && touch nucmer.success
-  mv nucmer.proc nucmer.done
 fi
 
 date
