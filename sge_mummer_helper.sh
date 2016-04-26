@@ -34,8 +34,9 @@ cd $MY_WORK
 if [ ! -e $MY_WORK/$SGE_TASK_ID.delta ]
 then
   echo "Aligning reads"
+  touch nucmer.proc
   $PATHMUM/nucmer -maxmatch -l 100 -c 500 ref.fa qry.fa -p $SGE_TASK_ID && touch nucmer.success
-  touch "nucmer.done"
+  mv nucmer.proc nucmer.done
 fi
 
 date
