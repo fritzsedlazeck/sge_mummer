@@ -29,7 +29,7 @@ while [ $COUNT -le $JOBPERNODE ]
 do
   ID=$(($JOBPERNODE * $GROUP + $COUNT))
   COUNT=$(($COUNT + 1))
-  if [ $ID -ge $MAX ]
+  if [ $ID -gt $MAX ]
   then
     break
   fi

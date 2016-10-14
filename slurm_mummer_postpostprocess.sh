@@ -21,7 +21,7 @@ if [ $# -eq $min_args ]; then
   echo "$ref $query" > $work/'merged_results.delta'
   echo "NUCMER" >> $work/'merged_results.delta'
   #footer:
-  for i in `/bin/ls $work/*/nucmer.proc`
+  for i in `/bin/ls $work/*/nucmer.*.proc`
   do
     DIR=$(dirname "${i}")
     if [ ! -f $DIR'/nucmer.success' ]; then
@@ -35,7 +35,7 @@ if [ $# -eq $min_args ]; then
   for i in $(cat $work/summary)
   do
     rm $i
-    rm -r $work/$tmp 
+    rm -r $work/$tmp
     tmp=$((tmp+1))
   done
   rm $work/summary
